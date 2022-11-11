@@ -5,12 +5,13 @@
       <input type="text" v-model="text" name="text" placeholder="Add Task" />
     </div>
     <div class="form-control">
-      <label>Day & Time</label>
-      <input
+      <label>Description</label>
+      <textarea
+        rows="10"
         type="text"
-        v-model="day"
-        name="day"
-        placeholder="Add Day & Time"
+        v-model="description"
+        name="description"
+        placeholder="Add Description"
       />
     </div>
     <div class="form-control form-control-check">
@@ -28,7 +29,7 @@ export default {
   data() {
     return {
       text: "",
-      day: "",
+      description: "",
       reminder: false,
     };
   },
@@ -44,12 +45,12 @@ export default {
       const newTask = {
         // id: Math.floor(Math.random() * 100000 + 3),
         text: this.text,
-        day: this.day,
+        description: this.description,
         reminder: this.reminder,
       };
 
       this.text = "";
-      this.day = "";
+      this.description = "";
       this.reminder = false;
 
       //   console.log(">>>LOG>>>", newTask);
@@ -70,7 +71,8 @@ export default {
 .form-control label {
   display: block;
 }
-.form-control input {
+.form-control input,
+.form-control textarea {
   width: 100%;
   height: 40px;
   margin: 5px;
@@ -88,5 +90,12 @@ export default {
 .form-control-check input {
   flex: 2;
   height: 20px;
+}
+
+.form-control textarea {
+  flex: 2;
+  height: 80px;
+  font-family: inherit;
+  font-size: inherit;
 }
 </style>

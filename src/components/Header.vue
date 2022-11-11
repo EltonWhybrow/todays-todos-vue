@@ -41,5 +41,6 @@ header {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  min-height: 4rem;
 }
 </style>

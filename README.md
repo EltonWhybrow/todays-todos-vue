@@ -1,4 +1,4 @@
-# planner
+# todays-todos
 
 ## Project setup
 ```

@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      showAddTask: true,
+      showAddTask: false,
     };
   },
   methods: {
@@ -41,6 +41,7 @@ export default {
 }
 body {
   font-family: "Poppins", sans-serif;
+  background-color: steelblue;
 }
 .container {
   max-width: 500px;
@@ -48,6 +49,7 @@ body {
   overflow: auto;
   min-height: 300px;
   border: 1px solid steelblue;
+  background-color: lightblue;
   padding: 30px;
   border-radius: 5px;
 }
