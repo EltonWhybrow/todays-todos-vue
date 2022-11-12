@@ -1,36 +1,6 @@
 {
   "tasks": [
     {
-      "text": "medbfdbvidb",
-      "description": "nnjkvnksvn",
-      "reminder": true,
-      "id": 8
-    },
-    {
-      "text": "WideSign - Pipeline",
-      "description": "",
-      "reminder": false,
-      "id": 9
-    },
-    {
-      "text": "Heloo",
-      "description": "",
-      "reminder": false,
-      "id": 10
-    },
-    {
-      "text": "eedede",
-      "description": "",
-      "reminder": false,
-      "id": 11
-    },
-    {
-      "text": "sqsq",
-      "description": "sqsqsq",
-      "reminder": false,
-      "id": 12
-    },
-    {
       "text": "WideSign - Pipeline",
       "description": "Add alerts\n",
       "reminder": true,

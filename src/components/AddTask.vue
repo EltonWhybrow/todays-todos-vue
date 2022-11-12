@@ -2,7 +2,23 @@
   <form @submit="onSubmit" class="add-form">
     <div class="form-control">
       <label>Task</label>
-      <input type="text" v-model="text" name="text" placeholder="Add Task" />
+      <input
+        type="text"
+        v-model="title"
+        name="title"
+        placeholder="Add Task"
+        :class="[title.length < 1 ? 'red' : 'green']"
+      />
+    </div>
+    <div class="form-control">
+      <label>Category</label>
+      <input
+        type="text"
+        v-model="category"
+        name="category"
+        placeholder="Add Category"
+        :class="[title.length < 1 ? 'red' : 'green']"
+      />
     </div>
     <div class="form-control">
       <label>Description</label>
@@ -19,7 +35,12 @@
       <input type="checkbox" v-model="reminder" name="reminder" />
     </div>
 
-    <input type="submit" value="Save Task" class="btn btn-block" />
+    <input
+      type="submit"
+      value="Save Task"
+      class="btn btn-block"
+      v-bind:disabled="description < 1 || title < 1"
+    />
   </form>
 </template>
 
@@ -28,8 +49,9 @@ export default {
   name: "app-form",
   data() {
     return {
-      text: "",
+      title: "",
       description: "",
+      category: "",
       reminder: false,
     };
   },
@@ -37,23 +59,29 @@ export default {
     onSubmit(e) {
       e.preventDefault();
 
-      if (!this.text) {
-        alert("Please add text");
+      if (!this.title) {
+        alert("Please add title");
+        return;
+      }
+
+      if (!this.description) {
+        alert("Please add description");
         return;
       }
 
       const newTask = {
-        // id: Math.floor(Math.random() * 100000 + 3),
-        text: this.text,
+        id: Math.floor(Math.random() * 100000 + 3),
+        title: this.title,
+        category: this.category,
         description: this.description,
         reminder: this.reminder,
       };
 
-      this.text = "";
+      this.title = "";
       this.description = "";
+      this.category = "";
       this.reminder = false;
 
-      //   console.log(">>>LOG>>>", newTask);
       this.$emit("add-task", newTask);
     },
   },

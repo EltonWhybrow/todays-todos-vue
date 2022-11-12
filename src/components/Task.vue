@@ -4,9 +4,10 @@
     :class="[task.reminder ? 'reminder' : '', 'task']"
   >
     <h3>
-      {{ task.text }} <i @click="onDelete(task.id)" class="fas fa-times"></i>
+      {{ task.title }} <i @click="onDelete(task.id)" class="fas fa-times"></i>
     </h3>
     <p>{{ task.description }}</p>
+    <span v-if="task.category" class="category">{{ task.category }}</span>
   </div>
 </template>
 
@@ -35,6 +36,7 @@ export default {
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
+  border-left: 5px solid lightgrey;
 }
 .task.reminder {
   border-left: 5px solid green;
@@ -43,5 +45,11 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.category {
+  border-radius: 15px;
+  padding: 2px 7px;
+  background-color: lightgray;
 }
 </style>

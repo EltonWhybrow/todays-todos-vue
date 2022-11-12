@@ -3,7 +3,7 @@
     <h1>{{ title }}</h1>
     <Button
       @btn-click="$emit('toggle-add-task')"
-      :text="addTaskOpen ? 'Close' : 'AddTask'"
+      :text="addTaskOpen ? 'Close' : 'Add Todo'"
       :color="addTaskOpen ? 'red' : 'green'"
       v-show="homePage"
     />

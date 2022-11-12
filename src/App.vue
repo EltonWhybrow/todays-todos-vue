@@ -24,6 +24,9 @@ export default {
       showAddTask: false,
     };
   },
+  mounted() {
+    document.title = "Todays Todos - Elton Checklist in vue primer";
+  },
   methods: {
     toggleAddTask() {
       this.showAddTask = !this.showAddTask;
@@ -55,7 +58,7 @@ body {
 }
 .btn {
   display: inline-block;
-  background: #000;
+  background: green;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -65,6 +68,10 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-family: inherit;
+}
+
+.btn:disabled {
+  background: grey;
 }
 .btn:focus {
   outline: none;

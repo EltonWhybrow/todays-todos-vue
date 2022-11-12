@@ -25,11 +25,13 @@ export default {
   data() {
     return {
       tasks: [],
+      todos: [],
     };
   },
   methods: {
     async addTask(task) {
-      const res = await fetch("api/tasks", {
+      console.log(">>>THE TASK >>>", task);
+      const res = await fetch("api/todos/add", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -38,12 +40,13 @@ export default {
       });
 
       const data = await res.json();
-
       this.tasks = [...this.tasks, data];
+      console.log(">>>LOG!!!>>>", this.tasks);
     },
+
     async deleteTask(id) {
       if (confirm("Are you sure?")) {
-        const res = await fetch(`api/tasks/${id}`, {
+        const res = await fetch(`api/todos/todo/${id}`, {
           method: "DELETE",
         });
 
@@ -52,11 +55,12 @@ export default {
           : alert("deleting task");
       }
     },
+
     async toggleReminder(id) {
-      const taskToToggle = await this.fetchTask(id);
+      const taskToToggle = await this.fetchTodo(id);
       const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
 
-      const res = await fetch(`api/tasks/${id}`, {
+      const res = await fetch(`api/todos/todo/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
@@ -70,19 +74,36 @@ export default {
         task.id === id ? { ...task, reminder: data.reminder } : task
       );
     },
-    async fetchTasks() {
-      const res = await fetch("api/tasks");
+
+    // NODE server to mongoDB
+    async fetchTodos() {
+      const res = await fetch("api/todos/");
       const data = await res.json();
       return data;
     },
-    async fetchTask(id) {
-      const res = await fetch(`api/tasks/${id}`);
+    async fetchTodo(id) {
+      const res = await fetch(`api/todos/todo/${id}`);
       const data = await res.json();
       return data;
     },
+    // json server
+    // async fetchTasks() {
+    //   const res = await fetch("api/tasks");
+    //   const data = await res.json();
+    //   return data;
+    // },
+    // async fetchTask(id) {
+    //   const res = await fetch(`api/tasks/${id}`);
+    //   const data = await res.json();
+    //   return data;
+    // },
   },
   async created() {
-    this.tasks = await this.fetchTasks();
+    // this.tasks = await this.fetchTasks();
+    this.tasks = await this.fetchTodos();
+    console.log(">>>TASK >>>", this.tasks);
+
+    // this.todos = await this.fetchTodo();
   },
 };
 </script>
