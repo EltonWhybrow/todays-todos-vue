@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <Header
+      class="bg-zinc-500"
       :addTaskOpen="showAddTask"
       @toggle-add-task="toggleAddTask"
       title="Todays Todos"
