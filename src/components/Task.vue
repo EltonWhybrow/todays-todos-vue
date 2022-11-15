@@ -18,8 +18,14 @@
           justify-content: space-between;
         "
       >
-        <i @click="onDelete(task.id)" class="delete fas fa-times"></i>
-        <i @click="onEdit(task.id)" class="edit fas fa-pen-to-square"></i>
+        <i
+          @click="$emit('delete-task', task.id)"
+          class="delete fas fa-times"
+        ></i>
+        <i
+          @click="$emit('edit-task', task.id)"
+          class="edit fas fa-pen-to-square"
+        ></i>
       </div>
     </div>
   </div>
@@ -30,18 +36,6 @@ export default {
   name: "app-task",
   props: {
     task: Object,
-  },
-  methods: {
-    onDelete(id) {
-      // console.log('>>>LOG>>>', id);
-
-      this.$emit("delete-task", id);
-    },
-    onEdit(id) {
-      // console.log('>>>LOG>>>', id);
-
-      this.$emit("edit-task", id);
-    },
   },
 };
 </script>

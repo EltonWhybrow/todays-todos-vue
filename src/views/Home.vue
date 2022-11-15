@@ -26,12 +26,20 @@ export default {
   data() {
     return {
       tasks: [],
-      todos: [],
     };
+  },
+  computed: {
+    // sortedItems: function () {
+    //   this.tasks.sort((a, b) => {
+    //     return new Date(a.dateTime) - new Date(b.dateTime);
+    //   });
+    //   return this.tasks;
+    // },
   },
   methods: {
     async addTask(task) {
-      console.log(">>>THE TASK >>>", task);
+      console.log(">>>LOG>>>", this.tasks);
+      // add new todo to database
       const res = await fetch("api/todos/add", {
         method: "POST",
         headers: {
@@ -42,7 +50,7 @@ export default {
 
       const data = await res.json();
       this.tasks = [...this.tasks, data];
-      console.log(">>>LOG!!!>>>", this.tasks);
+      this.$emit("toggle-add-task");
     },
 
     async deleteTask(id) {
@@ -93,24 +101,9 @@ export default {
       const data = await res.json();
       return data;
     },
-    // json server
-    // async fetchTasks() {
-    //   const res = await fetch("api/tasks");
-    //   const data = await res.json();
-    //   return data;
-    // },
-    // async fetchTask(id) {
-    //   const res = await fetch(`api/tasks/${id}`);
-    //   const data = await res.json();
-    //   return data;
-    // },
   },
   async created() {
-    // this.tasks = await this.fetchTasks();
     this.tasks = await this.fetchTodos();
-    console.log(">>>TASK >>>", this.tasks);
-
-    // this.todos = await this.fetchTodo();
   },
 };
 </script>

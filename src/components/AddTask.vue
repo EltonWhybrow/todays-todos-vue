@@ -10,7 +10,17 @@
         :class="[title.length < 1 ? 'red' : 'green']"
       />
     </div>
+
     <div class="form-control">
+      <select v-model="category">
+        <option value="WideSign">WideSign</option>
+        <option value="Personal">Personal</option>
+        <option value="Jobs">Jobs</option>
+        <option value="UBER">UBER</option>
+      </select>
+    </div>
+
+    <!-- <div class="form-control">
       <label>Category</label>
       <input
         type="text"
@@ -19,7 +29,7 @@
         placeholder="Add Category"
         :class="[title.length < 1 ? 'red' : 'green']"
       />
-    </div>
+    </div> -->
     <div class="form-control">
       <label>Description</label>
       <textarea
@@ -53,6 +63,7 @@ export default {
       description: "",
       category: "",
       reminder: false,
+      dateTime: "",
     };
   },
   methods: {
@@ -73,12 +84,15 @@ export default {
         category: this.category,
         description: this.description,
         reminder: this.reminder,
+        dateTime: new Date().getTime() / 1000,
       };
 
       this.title = "";
       this.description = "";
       this.category = "";
       this.reminder = false;
+
+      console.log(">>>LOG>>>", newTask);
 
       this.$emit("add-task", newTask);
     },

@@ -5,7 +5,11 @@
       @toggle-add-task="toggleAddTask"
       title="Todays Todos"
     />
-    <router-view :showAddTask="showAddTask"></router-view>
+    <router-view
+      :showAddTask="showAddTask"
+      @update-task="updateTask"
+      @toggle-add-task="toggleAddTask"
+    ></router-view>
     <Footer />
   </div>
 </template>
@@ -25,11 +29,33 @@ export default {
     };
   },
   mounted() {
-    document.title = "Todays Todos - Elton Checklist in vue primer";
+    document.title = "Todays Todos - Elton Tasklist in vue primer";
   },
   methods: {
+    // toogle the add task form
     toggleAddTask() {
       this.showAddTask = !this.showAddTask;
+    },
+    // update task from edit screen
+    async updateTask(task) {
+      const taskToUpdate = await this.fetchTodo(task.id);
+      const updatedTask = { ...taskToUpdate, ...task };
+
+      fetch(`api/todos/todo/${task.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(updatedTask),
+      });
+      // return to home view
+      this.$router.push({ path: "/" });
+    },
+    // NODE server to mongoDB
+    async fetchTodo(id) {
+      const res = await fetch(`api/todos/todo/${id}`);
+      const data = await res.json();
+      return data;
     },
   },
 };
