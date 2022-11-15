@@ -4,6 +4,7 @@
     <Tasks
       @toggle-reminder="toggleReminder"
       @delete-task="deleteTask"
+      @edit-task="editTask"
       :tasks="tasks"
     />
   </div>
@@ -53,6 +54,12 @@ export default {
         res.status === 200
           ? (this.tasks = this.tasks.filter((task) => task.id !== id))
           : alert("deleting task");
+      }
+    },
+
+    async editTask(id) {
+      if (confirm("Are you sure you want to edit?")) {
+        this.$router.push({ path: "/edit", query: { todo: id } });
       }
     },
 

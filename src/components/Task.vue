@@ -3,11 +3,25 @@
     @dblclick="$emit('toggle-reminder', task.id)"
     :class="[task.reminder ? 'reminder' : '', 'task']"
   >
-    <h3>
-      {{ task.title }} <i @click="onDelete(task.id)" class="fas fa-times"></i>
-    </h3>
-    <p>{{ task.description }}</p>
-    <span v-if="task.category" class="category">{{ task.category }}</span>
+    <div style="display: flex; justify-content: space-between">
+      <div>
+        <h3>
+          {{ task.title }}
+        </h3>
+        <p>{{ task.description }}</p>
+        <span v-if="task.category" class="category">{{ task.category }}</span>
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        "
+      >
+        <i @click="onDelete(task.id)" class="delete fas fa-times"></i>
+        <i @click="onEdit(task.id)" class="edit fas fa-pen-to-square"></i>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +36,11 @@ export default {
       // console.log('>>>LOG>>>', id);
 
       this.$emit("delete-task", id);
+    },
+    onEdit(id) {
+      // console.log('>>>LOG>>>', id);
+
+      this.$emit("edit-task", id);
     },
   },
 };
