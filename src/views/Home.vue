@@ -1,10 +1,13 @@
 <template>
   <div>
     <AddTasksForm v-show="showAddTask" @add-task="addTask" />
+    <div @click.prevent="resetFilter" v-show="showFilterText">Reset filter</div>
     <Tasks
       @toggle-reminder="toggleReminder"
       @delete-task="deleteTask"
       @edit-task="editTask"
+      @filter-category="filterCategory"
+      @resetFilter="resetFilter"
       :tasks="tasks"
     />
   </div>
@@ -18,6 +21,7 @@ export default {
   name: "app-home",
   props: {
     showAddTask: Boolean,
+    showFilterText: Boolean,
   },
   components: {
     Tasks,
@@ -28,17 +32,19 @@ export default {
       tasks: [],
     };
   },
-  computed: {
-    // sortedItems: function () {
-    //   this.tasks.sort((a, b) => {
-    //     return new Date(a.dateTime) - new Date(b.dateTime);
-    //   });
-    //   return this.tasks;
-    // },
-  },
   methods: {
+    async resetFilter() {
+      this.tasks = await this.fetchTodos();
+      this.$emit("toggle-filter-text");
+    },
+    filterCategory(category) {
+      const catSorted = this.tasks.filter((t) => {
+        return t.category === category;
+      });
+      this.tasks = catSorted;
+      this.$emit("toggle-filter-text");
+    },
     async addTask(task) {
-      console.log(">>>LOG>>>", this.tasks);
       // add new todo to database
       const res = await fetch("api/todos/add", {
         method: "POST",

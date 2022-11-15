@@ -7,8 +7,10 @@
     />
     <router-view
       :showAddTask="showAddTask"
+      :showFilterText="showFilterText"
       @update-task="updateTask"
       @toggle-add-task="toggleAddTask"
+      @toggle-filter-text="toggleFilterText"
     ></router-view>
     <Footer />
   </div>
@@ -26,6 +28,7 @@ export default {
   data() {
     return {
       showAddTask: false,
+      showFilterText: false,
     };
   },
   mounted() {
@@ -35,6 +38,9 @@ export default {
     // toogle the add task form
     toggleAddTask() {
       this.showAddTask = !this.showAddTask;
+    },
+    toggleFilterText() {
+      this.showFilterText = !this.showFilterText;
     },
     // update task from edit screen
     async updateTask(task) {

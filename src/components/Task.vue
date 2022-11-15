@@ -9,7 +9,12 @@
           {{ task.title }}
         </h3>
         <p>{{ task.description }}</p>
-        <span v-if="task.category" class="category">{{ task.category }}</span>
+        <span
+          @click="$emit('filter-category', task.category)"
+          v-if="task.category"
+          class="category"
+          >{{ task.category }}</span
+        >
       </div>
       <div
         style="
