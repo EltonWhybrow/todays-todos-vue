@@ -1,5 +1,5 @@
 <template>
-  <form @submit="onSubmit" class="add-form">
+  <form @submit.prevent="onSubmit" class="add-form">
     <div class="form-control">
       <label>Task</label>
       <input
@@ -56,9 +56,7 @@ export default {
     };
   },
   methods: {
-    onSubmit(e) {
-      e.preventDefault();
-
+    onSubmit() {
       if (!this.title) {
         alert("Please add title");
         return;
