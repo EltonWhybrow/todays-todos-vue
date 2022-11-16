@@ -1,7 +1,60 @@
 <template>
   <div>
     <AddTasksForm v-show="showAddTask" @add-task="addTask" />
-    <div @click.prevent="resetFilter" v-show="showFilterText">Reset filter</div>
+    <!-- v-show="showFilterText" -->
+    <ul id="filter" class="flex justify-end mb-4">
+      <li class="text-xs py-1 px-2">Filter:</li>
+      <li
+        @click.prevent="resetFilter()"
+        :class="[
+          currentFilter === 'none' ? 'bg-blue-800 text-white' : 'bg-gray-200',
+        ]"
+      >
+        All
+      </li>
+
+      <li
+        @click.prevent="filterCategory('WideSign')"
+        :class="[
+          currentFilter === 'WideSign'
+            ? 'bg-blue-800 text-white'
+            : 'bg-gray-200',
+        ]"
+      >
+        WideSign
+      </li>
+      <li
+        @click.prevent="filterCategory('Personal')"
+        :class="[
+          currentFilter === 'Personal'
+            ? 'bg-blue-800 text-white'
+            : 'bg-gray-200',
+        ]"
+      >
+        Personal
+      </li>
+      <li
+        @click.prevent="filterCategory('Jobs')"
+        :class="[
+          currentFilter === 'Jobs' ? 'bg-blue-800 text-white' : 'bg-gray-200',
+        ]"
+      >
+        Jobs
+      </li>
+      <li
+        @click.prevent="filterCategory('UBER')"
+        :class="[
+          currentFilter === 'UBER' ? 'bg-blue-800 text-white' : 'bg-gray-200',
+        ]"
+      >
+        UBER
+      </li>
+    </ul>
+
+    <div class="text-center w-full" v-if="!this.tasks.length">
+      <p class="text-md my-6">Currently no todos in '{{ currentFilter }}'</p>
+    </div>
+
     <Tasks
       @toggle-reminder="toggleReminder"
       @delete-task="deleteTask"
@@ -32,14 +85,18 @@ export default {
   data() {
     return {
       tasks: [],
+      currentFilter: "",
     };
   },
   methods: {
     async resetFilter() {
+      this.currentFilter = "none";
       this.tasks = await this.fetchTodos();
       this.$emit("toggle-filter-text");
     },
-    filterCategory(category) {
+    async filterCategory(category) {
+      this.tasks = await this.fetchTodos();
+      this.currentFilter = category;
       const catSorted = this.tasks.filter((t) => {
         return t.category === category;
       });
@@ -113,3 +170,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#filter li:not(:first-child) {
+  @apply rounded py-1 px-2 text-xs mx-1 cursor-pointer;
+}
+</style>

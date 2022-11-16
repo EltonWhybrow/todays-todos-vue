@@ -141,6 +141,6 @@ export default {
 }
 
 .category {
-  @apply rounded bg-gray-400 py-1 px-2 text-xs;
+  @apply rounded bg-gray-200 py-1 px-2 text-xs;
 }
 </style>

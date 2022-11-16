@@ -89,11 +89,46 @@ body {
       font-normal
       rounded-lg
       text-sm
-      px-5
-      py-2.5
+      px-3
+      py-2
       text-center
       inline-flex
       items-center
       dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+}
+
+/* // Form styles */
+.add-form {
+  margin-bottom: 40px;
+}
+.form-control {
+  @apply mb-5;
+}
+.form-control label {
+  @apply block mb-1;
+}
+.form-control input:not([type="checkbox"], [type="radio"]),
+.form-control select,
+.form-control textarea {
+  @apply border w-full h-10 p-2 text-base;
+}
+.form-control textarea {
+  height: 80px;
+}
+.form-control-check {
+  @apply flex align-middle justify-start;
+}
+.form-control-check label {
+}
+.form-control-check input {
+  height: 24px;
+}
+
+#category li {
+  @apply text-center text-xs bg-gray-300 py-2 px-3 rounded w-24;
+}
+
+#category li label {
+  @apply mb-1;
 }
 </style>

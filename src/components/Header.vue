@@ -2,12 +2,12 @@
   <header>
     <div class="container px-8 max-w-2xl mx-auto flex justify-between py-5">
       <h1 class="text-white font-semibold uppercase text-2xl mt-1">
-        {{ title }}
+        <router-link to="/"> {{ title }} </router-link>
       </h1>
       <div>
         <Button
           @btn-click="$emit('toggle-edit-task')"
-          :text="showEditTask ? 'delete tasks' : 'edit tasks'"
+          :text="showEditTask ? 'delete' : 'edit'"
           v-show="homePage"
           :icon="false"
         />

@@ -1,8 +1,7 @@
 <template>
   <div>
-    <h1>About</h1>
-    <h3>Version 1.0.0</h3>
-    <router-link to="/">Back home</router-link>
+    <h1 class="text-2xl font-semibold mb-4">About</h1>
+    <h3>Version 1.0.1</h3>
   </div>
 </template>
 

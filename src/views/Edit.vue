@@ -1,13 +1,10 @@
 <template>
   <div>
-    <h1>Edit</h1>
-    <h3>Edit todo</h3>
-
-    {{ todo }}
-
+    <h1 class="text-2xl font-semibold mb-4">Edit Todo</h1>
+    <!-- {{ todo }} -->
     <form @submit.prevent="onUpdateTodo" class="add-form">
       <div class="form-control">
-        <label>Title</label>
+        <label>Todo</label>
         <input
           type="text"
           v-model="todo.title"
@@ -17,65 +14,83 @@
       </div>
       <div class="form-control">
         <label>Category</label>
-
-        <label for="WideSign">WideSign</label><br />
-        <input
-          v-model="todo.category"
-          type="radio"
-          id="WideSign"
-          name="fav_language"
-          value="WideSign"
-          :checked="'WideSign' === todo.category"
-        />
-
-        <label for="Personal">Personal</label><br />
-        <input
-          v-model="todo.category"
-          type="radio"
-          id="Personal"
-          name="fav_language"
-          value="Personal"
-          :checked="'Personal' === todo.category"
-        />
-
-        <label for="Jobs">Jobs</label><br />
-        <input
-          v-model="todo.category"
-          type="radio"
-          id="Jobs"
-          name="fav_language"
-          value="Jobs"
-          :checked="'Jobs' === todo.category"
-        />
-
-        <label for="UBER">UBER</label><br />
-        <input
-          v-model="todo.category"
-          type="radio"
-          id="UBER"
-          name="fav_language"
-          value="UBER"
-          :checked="'UBER' === todo.category"
-        />
+        <ul id="category" class="flex justify-start space-x-2">
+          <li>
+            <label for="WideSign">WideSign</label>
+            <input
+              class="w-4 h-4"
+              v-model="todo.category"
+              type="radio"
+              id="WideSign"
+              name="fav_language"
+              value="WideSign"
+              :checked="'WideSign' === todo.category"
+            />
+          </li>
+          <li>
+            <label for="Personal">Personal</label>
+            <input
+              class="w-4 h-4"
+              v-model="todo.category"
+              type="radio"
+              id="Personal"
+              name="fav_language"
+              value="Personal"
+              :checked="'Personal' === todo.category"
+            />
+          </li>
+          <li>
+            <label for="Jobs">Jobs</label>
+            <input
+              class="w-4 h-4"
+              v-model="todo.category"
+              type="radio"
+              id="Jobs"
+              name="fav_language"
+              value="Jobs"
+              :checked="'Jobs' === todo.category"
+            />
+          </li>
+          <li>
+            <label for="UBER">UBER</label>
+            <input
+              class="w-4 h-4"
+              v-model="todo.category"
+              type="radio"
+              id="UBER"
+              name="fav_language"
+              value="UBER"
+              :checked="'UBER' === todo.category"
+            />
+          </li>
+        </ul>
       </div>
       <div class="form-control">
         <label>Description</label>
-        <input
+        <textarea
+          rows="10"
           type="text"
           v-model="todo.description"
           name="description"
           placeholder="Edit description"
         />
       </div>
-      <div class="form-control form-control-check">
-        <label>Set Reminder</label>
-        <input type="checkbox" v-model="todo.reminder" name="reminder" />
+      <div class="form-control flex justify-start space-x-2">
+        <label for="completed">Completed</label>
+        <input
+          class="w-4 h-4 mt-1"
+          id="completed"
+          type="checkbox"
+          v-model="todo.reminder"
+          name="completed"
+        />
       </div>
 
       <input type="submit" value="Update Task" class="btn" />
+      <p class="text-center w-full mt-1">
+        <router-link to="/">Cancel</router-link>
+      </p>
     </form>
-
-    <router-link to="/">Back home</router-link>
   </div>
 </template>
 
@@ -125,38 +140,5 @@ export default {
 <style scoped>
 .btn {
   @apply bg-blue-800 hover:bg-blue-900 w-full flex justify-center;
-}
-.add-form {
-  margin-bottom: 40px;
-}
-.form-control {
-  @apply mb-5;
-}
-.form-control label {
-  @apply block text-blue-700;
-}
-.form-control input:not([type="checkbox"], [type="radio"]),
-.form-control select,
-.form-control textarea {
-  @apply border shadow w-full h-10 p-2 text-base;
-}
-.form-control-check {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.form-control-check label {
-  flex: 1;
-}
-.form-control-check input {
-  flex: 2;
-  height: 20px;
-}
-
-.form-control textarea {
-  flex: 2;
-  height: 80px;
-  font-family: inherit;
-  font-size: inherit;
 }
 </style>
