@@ -1,18 +1,23 @@
 <template>
-  <div class="container">
+  <div class="main">
     <Header
-      class="bg-zinc-500"
+      class="sticky top-0 bg-orange-400"
+      :showEditTask="showEditTask"
       :addTaskOpen="showAddTask"
       @toggle-add-task="toggleAddTask"
+      @toggle-edit-task="toggleEditTask"
       title="Todays Todos"
     />
-    <router-view
-      :showAddTask="showAddTask"
-      :showFilterText="showFilterText"
-      @update-task="updateTask"
-      @toggle-add-task="toggleAddTask"
-      @toggle-filter-text="toggleFilterText"
-    ></router-view>
+    <div class="container max-w-2xl mx-auto my-8 px-8">
+      <router-view
+        :showEditTask="showEditTask"
+        :showAddTask="showAddTask"
+        :showFilterText="showFilterText"
+        @update-task="updateTask"
+        @toggle-add-task="toggleAddTask"
+        @toggle-filter-text="toggleFilterText"
+      ></router-view>
+    </div>
     <Footer />
   </div>
 </template>
@@ -30,15 +35,19 @@ export default {
     return {
       showAddTask: false,
       showFilterText: false,
+      showEditTask: false,
     };
   },
   mounted() {
     document.title = "Todays Todos - Elton Tasklist in vue primer";
   },
   methods: {
-    // toogle the add task form
+    // toogle task acrions
     toggleAddTask() {
       this.showAddTask = !this.showAddTask;
+    },
+    toggleEditTask() {
+      this.showEditTask = !this.showEditTask;
     },
     toggleFilterText() {
       this.showFilterText = !this.showFilterText;
@@ -70,50 +79,21 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+
 body {
   font-family: "Poppins", sans-serif;
-  background-color: steelblue;
-}
-.container {
-  max-width: 500px;
-  margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  border: 1px solid steelblue;
-  background-color: lightblue;
-  padding: 30px;
-  border-radius: 5px;
-}
-.btn {
-  display: inline-block;
-  background: green;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: inherit;
 }
 
-.btn:disabled {
-  background: grey;
-}
-.btn:focus {
-  outline: none;
-}
-.btn:active {
-  transform: scale(0.98);
-}
-.btn-block {
-  display: block;
-  width: 100%;
+.btn {
+  @apply text-white
+      font-normal
+      rounded-lg
+      text-sm
+      px-5
+      py-2.5
+      text-center
+      inline-flex
+      items-center
+      dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
 }
 </style>

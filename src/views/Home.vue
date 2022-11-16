@@ -9,6 +9,7 @@
       @filter-category="filterCategory"
       @resetFilter="resetFilter"
       :tasks="tasks"
+      :showEditTask="showEditTask"
     />
   </div>
 </template>
@@ -22,6 +23,7 @@ export default {
   props: {
     showAddTask: Boolean,
     showFilterText: Boolean,
+    showEditTask: Boolean,
   },
   components: {
     Tasks,
@@ -60,7 +62,7 @@ export default {
     },
 
     async deleteTask(id) {
-      if (confirm("Are you sure?")) {
+      if (confirm("Are you sure you want to delete?")) {
         const res = await fetch(`api/todos/todo/${id}`, {
           method: "DELETE",
         });
@@ -72,9 +74,7 @@ export default {
     },
 
     async editTask(id) {
-      if (confirm("Are you sure you want to edit?")) {
-        this.$router.push({ path: "/edit", query: { todo: id } });
-      }
+      this.$router.push({ path: "/edit", query: { todo: id } });
     },
 
     async toggleReminder(id) {

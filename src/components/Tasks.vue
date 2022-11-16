@@ -6,6 +6,7 @@
       @filter-category="$emit('filterCategory', task.category)"
       @edit-task="$emit('edit-task', task.id)"
       :task="task"
+      :showEditTask="showEditTask"
     />
   </div>
 </template>
@@ -17,6 +18,7 @@ export default {
   name: "app-tasks",
   props: {
     tasks: Array,
+    showEditTask: Boolean,
   },
   components: {
     Task,

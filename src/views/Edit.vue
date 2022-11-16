@@ -72,12 +72,7 @@
         <input type="checkbox" v-model="todo.reminder" name="reminder" />
       </div>
 
-      <input
-        type="submit"
-        value="Update Task"
-        class="btn btn-block"
-        v-bind:disabled="todo.description < 1 || todo.title < 1"
-      />
+      <input type="submit" value="Update Task" class="btn" />
     </form>
 
     <router-link to="/">Back home</router-link>
@@ -128,22 +123,22 @@ export default {
 
 
 <style scoped>
+.btn {
+  @apply bg-blue-800 hover:bg-blue-900 w-full flex justify-center;
+}
 .add-form {
   margin-bottom: 40px;
 }
 .form-control {
-  margin: 20px 0;
+  @apply mb-5;
 }
 .form-control label {
-  display: block;
+  @apply block text-blue-700;
 }
-.form-control input,
+.form-control input:not([type="checkbox"], [type="radio"]),
+.form-control select,
 .form-control textarea {
-  width: 100%;
-  height: 40px;
-  margin: 5px;
-  padding: 3px 7px;
-  font-size: 17px;
+  @apply border shadow w-full h-10 p-2 text-base;
 }
 .form-control-check {
   display: flex;

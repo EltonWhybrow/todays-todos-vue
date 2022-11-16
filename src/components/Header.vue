@@ -1,12 +1,29 @@
 <template>
   <header>
-    <h1>{{ title }}</h1>
-    <Button
-      @btn-click="$emit('toggle-add-task')"
-      :text="addTaskOpen ? 'Close' : 'Add Todo'"
-      :color="addTaskOpen ? 'red' : 'green'"
-      v-show="homePage"
-    />
+    <div class="container px-8 max-w-2xl mx-auto flex justify-between py-5">
+      <h1 class="text-white font-semibold uppercase text-2xl mt-1">
+        {{ title }}
+      </h1>
+      <div>
+        <Button
+          @btn-click="$emit('toggle-edit-task')"
+          :text="showEditTask ? 'delete tasks' : 'edit tasks'"
+          v-show="homePage"
+          :icon="false"
+        />
+        <Button
+          @btn-click="$emit('toggle-add-task')"
+          :text="addTaskOpen ? 'Close' : 'Add Todo'"
+          :class="
+            addTaskOpen
+              ? 'bg-rose-500 hover:bg-red-400'
+              : 'bg-blue-800  hover:bg-blue-700'
+          "
+          v-show="homePage"
+          :icon="true"
+        />
+      </div>
+    </div>
   </header>
 </template>
 
@@ -18,6 +35,7 @@ export default {
   props: {
     title: String,
     addTaskOpen: Boolean,
+    showEditTask: Boolean,
   },
   components: {
     Button,
@@ -36,11 +54,4 @@ export default {
 </script>
 
 <style scoped>
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  min-height: 4rem;
-}
 </style>

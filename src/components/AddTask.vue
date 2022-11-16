@@ -1,23 +1,29 @@
 <template>
   <form @submit.prevent="onSubmit" class="add-form">
     <div class="form-control">
-      <label>Task</label>
-      <input
-        type="text"
-        v-model="title"
-        name="title"
-        placeholder="Add Task"
-        :class="[title.length < 1 ? 'red' : 'green']"
-      />
+      <label
+        >Task
+        <input
+          type="text"
+          v-model="title"
+          name="title"
+          placeholder="Add Task"
+          :class="[title.length < 1 ? 'border-gray-300' : 'border-green-600']"
+        />
+      </label>
     </div>
 
     <div class="form-control">
-      <select v-model="category">
-        <option value="WideSign">WideSign</option>
-        <option value="Personal">Personal</option>
-        <option value="Jobs">Jobs</option>
-        <option value="UBER">UBER</option>
-      </select>
+      <label
+        >Category
+        <select v-model="category">
+          <option value="">None</option>
+          <option value="WideSign">WideSign</option>
+          <option value="Personal">Personal</option>
+          <option value="Jobs">Jobs</option>
+          <option value="UBER">UBER</option>
+        </select>
+      </label>
     </div>
 
     <!-- <div class="form-control">
@@ -31,23 +37,28 @@
       />
     </div> -->
     <div class="form-control">
-      <label>Description</label>
-      <textarea
-        rows="10"
-        type="text"
-        v-model="description"
-        name="description"
-        placeholder="Add Description"
-      />
+      <label
+        >Description
+        <textarea
+          rows="10"
+          type="text"
+          v-model="description"
+          name="description"
+          placeholder="Add Description"
+          :class="[
+            description.length < 1 ? 'border-gray-300' : 'border-green-600',
+          ]"
+        />
+      </label>
     </div>
-    <div class="form-control form-control-check">
-      <label>Set Reminder</label>
-      <input type="checkbox" v-model="reminder" name="reminder" />
+    <div class="form-control hidden">
+      <label for="reminder">Completed</label>
+      <input class="btn" type="checkbox" name="reminder" id="reminder" />
     </div>
 
     <input
       type="submit"
-      value="Save Task"
+      value="Add Todo"
       class="btn btn-block"
       v-bind:disabled="description < 1 || title < 1"
     />
@@ -102,22 +113,22 @@ export default {
 
 
 <style scoped>
+.btn {
+  @apply bg-blue-800 hover:bg-blue-900 w-full flex justify-center;
+}
 .add-form {
   margin-bottom: 40px;
 }
 .form-control {
-  margin: 20px 0;
+  @apply mb-5;
 }
 .form-control label {
-  display: block;
+  @apply block text-blue-700;
 }
-.form-control input,
+.form-control input:not([type="checkbox"]),
+.form-control select,
 .form-control textarea {
-  width: 100%;
-  height: 40px;
-  margin: 5px;
-  padding: 3px 7px;
-  font-size: 17px;
+  @apply border shadow w-full h-10 p-2 text-base;
 }
 .form-control-check {
   display: flex;
