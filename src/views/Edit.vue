@@ -86,7 +86,7 @@
         />
       </div>
 
-      <input type="submit" value="Update Task" class="btn" />
+      <input type="submit" value="Update Todo" class="btn" />
       <p class="text-center w-full mt-1">
         <router-link to="/">Cancel</router-link>
       </p>
