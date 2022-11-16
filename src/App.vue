@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <Header
-      class="sticky top-0 bg-orange-400"
+      class="sticky top-0 bg-blue-400"
       :showEditTask="showEditTask"
       :addTaskOpen="showAddTask"
       @toggle-add-task="toggleAddTask"
@@ -96,6 +96,10 @@ body {
       items-center
       dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
 }
+
+/* .btn:disabled {
+  background: #dddddd !important;
+} */
 
 /* // Form styles */
 .add-form {

@@ -16,7 +16,7 @@
           :text="addTaskOpen ? 'Close' : 'Add Todo'"
           :class="
             addTaskOpen
-              ? 'bg-rose-500 hover:bg-red-400'
+              ? 'bg-red-700 hover:bg-red-600'
               : 'bg-blue-800  hover:bg-blue-700'
           "
           v-show="homePage"

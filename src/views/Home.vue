@@ -1,13 +1,17 @@
 <template>
   <div>
-    <AddTasksForm v-show="showAddTask" @add-task="addTask" />
+    <AddTasksForm
+      v-show="showAddTask"
+      @add-task="addTask"
+      @toggle-add-task="$emit('toggle-add-task')"
+    />
     <!-- v-show="showFilterText" -->
     <ul id="filter" class="flex justify-end mb-4">
       <li class="text-xs py-1 px-2">Filter:</li>
       <li
         @click.prevent="resetFilter()"
         :class="[
-          currentFilter === 'none' ? 'bg-blue-800 text-white' : 'bg-gray-200',
+          currentFilter === 'none' ? 'bg-blue-400 text-white' : 'bg-gray-200',
         ]"
       >
         All
@@ -17,7 +21,7 @@
         @click.prevent="filterCategory('WideSign')"
         :class="[
           currentFilter === 'WideSign'
-            ? 'bg-blue-800 text-white'
+            ? 'bg-blue-400 text-white'
             : 'bg-gray-200',
         ]"
       >
@@ -27,7 +31,7 @@
         @click.prevent="filterCategory('Personal')"
         :class="[
           currentFilter === 'Personal'
-            ? 'bg-blue-800 text-white'
+            ? 'bg-blue-400 text-white'
             : 'bg-gray-200',
         ]"
       >
@@ -36,7 +40,7 @@
       <li
         @click.prevent="filterCategory('Jobs')"
         :class="[
-          currentFilter === 'Jobs' ? 'bg-blue-800 text-white' : 'bg-gray-200',
+          currentFilter === 'Jobs' ? 'bg-blue-400 text-white' : 'bg-gray-200',
         ]"
       >
         Jobs
@@ -44,7 +48,7 @@
       <li
         @click.prevent="filterCategory('UBER')"
         :class="[
-          currentFilter === 'UBER' ? 'bg-blue-800 text-white' : 'bg-gray-200',
+          currentFilter === 'UBER' ? 'bg-blue-400 text-white' : 'bg-gray-200',
         ]"
       >
         UBER
@@ -88,6 +92,7 @@ export default {
       currentFilter: "",
     };
   },
+  emits: ["toggle-add-task"],
   methods: {
     async resetFilter() {
       this.currentFilter = "none";

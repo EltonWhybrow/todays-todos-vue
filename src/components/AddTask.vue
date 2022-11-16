@@ -56,12 +56,11 @@
         <input class="btn" type="checkbox" name="reminder" id="reminder" />
       </div>
 
-      <input
-        type="submit"
-        value="Add Todo"
-        class="btn btn-block"
-        v-bind:disabled="description < 1 || title < 1"
-      />
+      <input type="submit" value="Add Todo" class="btn btn-block" />
+      <!-- v-bind:disabled="description < 1 || title < 1" -->
+      <p class="text-center w-full mt-1">
+        <span @click="$emit('toggle-add-task')">Cancel</span>
+      </p>
     </form>
   </div>
 </template>
@@ -78,7 +77,12 @@ export default {
       dateTime: "",
     };
   },
+  emits: ["toggle-add-task"],
   methods: {
+    // cancelAddTask() {
+    //   console.log("1");
+    //   this.$emit("toggle-add-task");
+    // },
     onSubmit() {
       if (!this.title) {
         alert("Please add title");

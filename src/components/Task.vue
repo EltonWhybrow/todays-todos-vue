@@ -59,7 +59,7 @@
           class="
             text-2xl
             p-5
-            bg-blue-800
+            bg-blue-400
             flex
             justify-center
             align-middle
