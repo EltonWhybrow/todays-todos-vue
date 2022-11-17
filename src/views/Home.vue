@@ -111,7 +111,7 @@ export default {
     async addTask(task) {
       // add new todo to database
       const res = await fetch("api/todos/add", {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-type": "application/json",
         },
@@ -135,7 +135,7 @@ export default {
       }
     },
 
-    async editTask(id) {
+    editTask(id) {
       this.$router.push({ path: "/edit", query: { todo: id } });
     },
 

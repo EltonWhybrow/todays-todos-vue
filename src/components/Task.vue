@@ -1,10 +1,7 @@
 <template>
   <div
     @dblclick="$emit('toggle-reminder', task.id)"
-    :class="[
-      task.reminder ? 'reminder line-through text-green-700' : '',
-      'task',
-    ]"
+    :class="[task.reminder ? 'reminder text-green-700' : '', 'task']"
   >
     <div class="flex justify-between">
       <div class="flex flex-row justify-between">
