@@ -8,7 +8,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '^/api': {
-        target: 'http://localhost:3000',
+        target: 'https://node.widesign.co.uk',
         changeOrigin: true,
         logLevel: 'debug',
         pathRewrite: { '^/api': '/' }
