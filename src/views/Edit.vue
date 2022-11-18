@@ -104,9 +104,12 @@ export default {
     };
   },
   async mounted() {
-    const res = await fetch(`api/todos/todo/${this.$route.query.todo}`, {
-      method: "GET",
-    });
+    const res = await fetch(
+      `${process.env.VUE_APP_API_BASE_URL}/todos/todo/${this.$route.query.todo}`,
+      {
+        method: "GET",
+      }
+    );
     const todoToEdit = await res.json();
     this.todo = todoToEdit;
   },

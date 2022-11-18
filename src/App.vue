@@ -57,7 +57,7 @@ export default {
       const taskToUpdate = await this.fetchTodo(task.id);
       const updatedTask = { ...taskToUpdate, ...task };
 
-      fetch(`api/todos/todo/${task.id}`, {
+      fetch(`${process.env.VUE_APP_API_BASE_URL}/todos/todo/${task.id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
@@ -69,7 +69,9 @@ export default {
     },
     // NODE server to mongoDB
     async fetchTodo(id) {
-      const res = await fetch(`api/todos/todo/${id}`);
+      const res = await fetch(
+        `${process.env.VUE_APP_API_BASE_URL}/todos/todo/${id}`
+      );
       const data = await res.json();
       return data;
     },

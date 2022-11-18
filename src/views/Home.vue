@@ -110,7 +110,7 @@ export default {
     },
     async addTask(task) {
       // add new todo to database
-      const res = await fetch("api/todos/add", {
+      const res = await fetch(`${process.env.VUE_APP_API_BASE_URL}/todos/add`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
@@ -125,9 +125,12 @@ export default {
 
     async deleteTask(id) {
       if (confirm("Are you sure you want to delete?")) {
-        const res = await fetch(`api/todos/todo/${id}`, {
-          method: "DELETE",
-        });
+        const res = await fetch(
+          `${process.env.VUE_APP_API_BASE_URL}/todos/todo/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
 
         res.status === 200
           ? (this.tasks = this.tasks.filter((task) => task.id !== id))
@@ -143,13 +146,16 @@ export default {
       const taskToToggle = await this.fetchTodo(id);
       const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
 
-      const res = await fetch(`api/todos/todo/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(updTask),
-      });
+      const res = await fetch(
+        `${process.env.VUE_APP_API_BASE_URL}/todos/todo/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(updTask),
+        }
+      );
 
       const data = await res.json();
 
@@ -160,12 +166,14 @@ export default {
 
     // NODE server to mongoDB
     async fetchTodos() {
-      const res = await fetch("api/todos/");
+      const res = await fetch(`${process.env.VUE_APP_API_BASE_URL}/todos/`);
       const data = await res.json();
       return data;
     },
     async fetchTodo(id) {
-      const res = await fetch(`api/todos/todo/${id}`);
+      const res = await fetch(
+        `${process.env.VUE_APP_API_BASE_URL}/todos/todo/${id}`
+      );
       const data = await res.json();
       return data;
     },
