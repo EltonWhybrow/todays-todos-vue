@@ -36,7 +36,7 @@
       </div>
       <div class="py-2 pr-5 pl-4 w-full">
         <div class="flex justify-between">
-          <h3 class="text-lg">
+          <h3 class="text-md md:text-lg">
             {{ task.title }}
           </h3>
           <div
@@ -47,7 +47,7 @@
             {{ task.category }}
           </div>
         </div>
-        <p class="text-sm py-1">{{ task.description }}</p>
+        <p class="text-xs md:text-sm py-1">{{ task.description }}</p>
       </div>
       <div class="flex flex-row justify-between">
         <div
