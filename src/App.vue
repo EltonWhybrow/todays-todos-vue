@@ -8,7 +8,7 @@
       @toggle-edit-task="toggleEditTask"
       title="Todays Todos"
     />
-    <div class="container max-w-2xl mx-auto my-8 px-8">
+    <div class="container max-w-2xl mx-auto my-4 px-2 md:my-8 md:px-8">
       <router-view
         :showEditTask="showEditTask"
         :showAddTask="showAddTask"

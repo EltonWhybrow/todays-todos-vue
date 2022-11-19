@@ -1,7 +1,9 @@
 <template>
   <header>
-    <div class="container px-8 max-w-2xl mx-auto flex justify-between py-5">
-      <h1 class="text-white font-semibold uppercase text-2xl mt-1">
+    <div
+      class="container px-3 md:px-8 max-w-2xl mx-auto flex justify-between py-5"
+    >
+      <h1 class="text-white font-semibold uppercase text-xl md:text-2xl mt-1">
         <router-link to="/"> {{ title }} </router-link>
       </h1>
       <div>
