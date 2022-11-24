@@ -75,14 +75,34 @@
           placeholder="Edit description"
         />
       </div>
+      <div class="form-control">
+        <label>Notes</label>
+        <textarea
+          rows="10"
+          type="text"
+          v-model="todo.notes"
+          name="notes"
+          placeholder="Edit notes"
+        />
+      </div>
       <div class="form-control flex justify-start space-x-2">
         <label for="completed">Completed</label>
         <input
           class="w-4 h-4 mt-1"
           id="completed"
           type="checkbox"
-          v-model="todo.reminder"
+          v-model="todo.completed"
           name="completed"
+        />
+      </div>
+      <div class="form-control flex justify-start space-x-2">
+        <label for="completed">Reminder</label>
+        <input
+          class="w-4 h-4 mt-1"
+          id="reminder"
+          type="checkbox"
+          v-model="todo.reminder"
+          name="reminder"
         />
       </div>
 
@@ -130,7 +150,9 @@ export default {
         title: this.todo.title,
         category: this.todo.category,
         description: this.todo.description,
+        notes: this.todo.notes,
         reminder: this.todo.reminder,
+        completed: this.todo.completed,
       };
 
       this.$emit("update-task", updateTask);

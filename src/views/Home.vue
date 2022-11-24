@@ -61,6 +61,7 @@
 
     <Tasks
       @toggle-reminder="toggleReminder"
+      @toggle-completed="toggleCompleted"
       @delete-task="deleteTask"
       @edit-task="editTask"
       @filter-category="filterCategory"
@@ -161,6 +162,31 @@ export default {
 
       this.tasks = this.tasks.map((task) =>
         task.id === id ? { ...task, reminder: data.reminder } : task
+      );
+    },
+
+    async toggleCompleted(id) {
+      const taskToComplete = await this.fetchTodo(id);
+      const updTask = {
+        ...taskToComplete,
+        completed: !taskToComplete.completed,
+      };
+
+      const res = await fetch(
+        `${process.env.VUE_APP_API_BASE_URL}/todos/todo/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(updTask),
+        }
+      );
+
+      const data = await res.json();
+
+      this.tasks = this.tasks.map((task) =>
+        task.id === id ? { ...task, completed: data.completed } : task
       );
     },
 

@@ -120,6 +120,7 @@ body {
 }
 .form-control textarea {
   height: 80px;
+  vertical-align: top;
 }
 .form-control-check {
   @apply flex align-middle justify-start;

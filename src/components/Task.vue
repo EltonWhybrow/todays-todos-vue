@@ -1,11 +1,16 @@
 <template>
   <div
     @dblclick="$emit('toggle-reminder', task.id)"
-    :class="[task.reminder ? 'reminder text-green-700' : '', 'task']"
+    :class="[
+      task.reminder ? 'reminder' : '',
+      task.completed ? 'completed text-green-700 line-through' : '',
+      'task',
+    ]"
   >
     <div class="flex justify-between">
       <div class="flex flex-row justify-between">
         <div
+          @click="$emit('toggle-completed', task.id)"
           class="
             text-2xl
             py-4
@@ -23,7 +28,7 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            :class="[task.reminder ? 'text-green-700' : 'text-gray-400']"
+            :class="[task.completed ? 'text-green-700' : 'text-gray-400']"
             class="w-8 h-8"
           >
             <path
@@ -130,11 +135,11 @@ export default {
   @apply text-gray-200;
 }
 .task {
-  @apply bg-gray-50 my-2 shadow cursor-pointer border-l-2 border-l-gray-400;
+  @apply bg-gray-50 my-2 shadow cursor-pointer border-l-4 border-l-gray-400;
 }
 
 .task.reminder {
-  @apply border-l-green-600;
+  @apply border-l-green-600 bg-gray-300;
 }
 
 .category {
