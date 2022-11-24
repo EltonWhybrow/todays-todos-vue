@@ -186,6 +186,8 @@ export default {
       this.tasks = this.tasks.map((task) =>
         task.id === id ? { ...task, reminder: data.reminder } : task
       );
+
+      // this.tasks = await this.fetchTodos();
     },
 
     async toggleCompleted(id) {
@@ -218,14 +220,19 @@ export default {
     async fetchTodos() {
       const res = await fetch(`${process.env.VUE_APP_API_BASE_URL}/todos/`);
       const data = await res.json();
-      const inComplete = data.filter((items) => !items.completed);
+      const inComplete = data
+        .filter((items) => !items.completed)
+        .sort((a, b) => Number(b.reminder) - Number(a.reminder));
       // console.log("DATA>>> take completed out", withoutComplete);
       return inComplete;
     },
     async fetchAllTodos() {
       const res = await fetch(`${process.env.VUE_APP_API_BASE_URL}/todos/`);
       const data = await res.json();
-      return data;
+      const orderTodos = data.sort(
+        (a, b) => Number(b.reminder) - Number(a.reminder)
+      );
+      return orderTodos;
     },
     async fetchTodo(id) {
       const res = await fetch(
