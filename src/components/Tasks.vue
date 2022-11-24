@@ -29,6 +29,7 @@ export default {
     "delete-task",
     "edit-task",
     "toggle-reminder",
+    "toggle-completed",
     "filterCategory",
     "resetFilter",
   ],

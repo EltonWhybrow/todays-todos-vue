@@ -18,6 +18,17 @@
       </li>
 
       <li
+        @click.prevent="filterCompleted()"
+        :class="[
+          currentFilter === 'completed'
+            ? 'bg-blue-400 text-white'
+            : 'bg-gray-200',
+        ]"
+      >
+        Completed
+      </li>
+
+      <li
         @click.prevent="filterCategory('WideSign')"
         :class="[
           currentFilter === 'WideSign'
@@ -99,6 +110,18 @@ export default {
       this.currentFilter = "none";
       this.tasks = await this.fetchTodos();
       this.$emit("toggle-filter-text");
+    },
+    async filterCompleted() {
+      this.currentFilter = "completed";
+      this.tasks = await this.fetchAllTodos();
+      const completedSorted = this.tasks.filter((t) => {
+        return t.completed;
+      });
+
+      console.log("taks", this.tasks);
+      console.log("completedSorted", completedSorted);
+      this.tasks = completedSorted;
+      // this.$emit("toggle-filter-text");
     },
     async filterCategory(category) {
       this.tasks = await this.fetchTodos();
@@ -188,10 +211,18 @@ export default {
       this.tasks = this.tasks.map((task) =>
         task.id === id ? { ...task, completed: data.completed } : task
       );
+      // this.tasks = await this.fetchTodos();
     },
 
     // NODE server to mongoDB
     async fetchTodos() {
+      const res = await fetch(`${process.env.VUE_APP_API_BASE_URL}/todos/`);
+      const data = await res.json();
+      const inComplete = data.filter((items) => !items.completed);
+      // console.log("DATA>>> take completed out", withoutComplete);
+      return inComplete;
+    },
+    async fetchAllTodos() {
       const res = await fetch(`${process.env.VUE_APP_API_BASE_URL}/todos/`);
       const data = await res.json();
       return data;

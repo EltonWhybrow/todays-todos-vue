@@ -22,6 +22,7 @@
             items-center
           "
         >
+          <!-- <div v-show="!task.reminder"> -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -37,6 +38,25 @@
               d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
+          <!-- </div> -->
+
+          <!-- <div v-show="task.reminder">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              :class="[task.reminder ? 'text-rose-700' : 'text-gray-400']"
+              class="w-8 h-8"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+              />
+            </svg>
+          </div> -->
         </div>
       </div>
       <div class="py-2 pr-5 pl-4 w-full">
@@ -139,7 +159,10 @@ export default {
 }
 
 .task.reminder {
-  @apply border-l-green-600 bg-gray-300;
+  @apply border-l-rose-700 bg-gray-300;
+}
+.task.completed {
+  @apply border-l-green-600;
 }
 
 .category {
