@@ -28,6 +28,18 @@
             />
           </li>
           <li>
+            <label for="Ascential">Ascential</label>
+            <input
+              class="w-4 h-4"
+              v-model="todo.category"
+              type="radio"
+              id="Ascential"
+              name="fav_language"
+              value="Ascential"
+              :checked="'Ascential' === todo.category"
+            />
+          </li>
+          <li>
             <label for="Personal">Personal</label>
             <input
               class="w-4 h-4"
