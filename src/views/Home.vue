@@ -38,6 +38,16 @@
       >
         WideSign
       </li>
+
+      <li
+        @click.prevent="filterCategory('Work')"
+        :class="[
+          currentFilter === 'Work' ? 'bg-blue-400 text-white' : 'bg-gray-200',
+        ]"
+      >
+        Ascential
+      </li>
+
       <li
         @click.prevent="filterCategory('Personal')"
         :class="[

@@ -35,7 +35,7 @@ export default {
     return {
       showAddTask: false,
       showFilterText: false,
-      showEditTask: false,
+      showEditTask: true,
     };
   },
   mounted() {
