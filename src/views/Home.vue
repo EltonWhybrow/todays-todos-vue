@@ -40,9 +40,11 @@
       </li>
 
       <li
-        @click.prevent="filterCategory('Work')"
+        @click.prevent="filterCategory('Ascential')"
         :class="[
-          currentFilter === 'Work' ? 'bg-blue-400 text-white' : 'bg-gray-200',
+          currentFilter === 'Ascential'
+            ? 'bg-blue-400 text-white'
+            : 'bg-gray-200',
         ]"
       >
         Ascential

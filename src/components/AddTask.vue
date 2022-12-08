@@ -19,7 +19,7 @@
         <select v-model="category" id="category">
           <option value="">None</option>
           <option value="WideSign">WideSign</option>
-          <option value="Work">Work</option>
+          <option value="Ascential">Ascential</option>
           <option value="Personal">Personal</option>
           <option value="Jobs">Jobs</option>
           <option value="UBER">UBER</option>
